@@ -1,0 +1,24 @@
+{% extends 'jokes/base.html' %}
+
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    {{ post.content|linebreaks}}
+    <h1>Добить шутку</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.content }}<br>
+        {{ form.joke_id }}
+        <button type="submit" class="btn btn-success">Добавить</button>
+        <span>{{ error }}</span>
+    </form>
+
+
+    {% for el in addition %}
+        <div class="alert alert-warning mt-2">
+            <p>{{el.content}}</p>
+        </div>
+    {% endfor %}
+
+
+{% endblock %}
