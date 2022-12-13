@@ -1,19 +1,61 @@
 {% extends 'jokes/base.html' %}
 
 {% block content %}
-<h1>{{title}}</h1>
 
-<form method="post">
-    {% csrf_token %}
+    <div class="position-absolute top-50 start-50 translate-middle" style="font-family: 'Comfortaa', cursive;">
+      <div class="col-sm-30">
+        <div class="card text-white bg-dark mb-3">
+          <div class="card-body" style="background: linear-gradient(to right, rgba(24,24,26,1), rgba(24,24,26,1))">
+            <h1>{{title}}</h1>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-error">{{ form.non_field_errors }}</div>
 
-<div class="form-error">{{ form.non_field_errors }}</div>
+                {% for f in form %}
+                <p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>
+                    <br>
+                    {{ f }}
+                </p>
+                <div class="form-error">{{ f.errors }}</div>
+                {% endfor %}
 
-{% for f in form %}
-<p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
-<div class="form-error">{{ f.errors }}</div>
-{% endfor %}
+                <button type="submit" class="btn btn-success">Войти</button>
+                <a href="{% url 'register'%}" class="btn btn-primary">Не зарегистрированы?</a>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <button type="submit">Войти</button>
-</form>
+        <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
 {% endblock %}
