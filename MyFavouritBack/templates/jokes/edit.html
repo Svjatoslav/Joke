@@ -1,0 +1,61 @@
+{% extends "jokes/base.html" %}
+
+{% block title %}Поменяй данные профиля{% endblock %}
+
+{% block content %}
+
+
+    <div class="position-absolute top-50 start-50 translate-middle" style="font-family: 'Comfortaa', cursive;">
+      <div class="col-sm-30">
+        <div class="card text-white bg-dark mb-3" >
+          <div class="card-body" style="background: linear-gradient(to right, rgba(24,24,26,1), rgba(24,24,26,1))">
+            <h1 style="align-items: center;">{{ title }}</h1>
+            {% if user.is_authenticated %}
+                <h1>Редактировать профиль</h1>
+                <form action="." method="post" enctype="multipart/form-data">
+                    {{ user_form.as_p }}
+                    {{ profile_form.as_p }}
+                    {% csrf_token %}
+                    <p><input type="submit" class="btn btn-primary float-end" value="Сохранить"></p>
+                </form>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+{% endblock %}

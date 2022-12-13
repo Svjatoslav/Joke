@@ -1,24 +1,36 @@
 {% extends 'jokes/base.html' %}
 
 {% block content %}
-    <h1>{{ post.title }}</h1>
-    {{ post.content|linebreaks}}
-    <h1>Добить шутку</h1>
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.content }}<br>
-        {{ form.joke_id }}
-        <button type="submit" class="btn btn-success">Добавить</button>
-        <span>{{ error }}</span>
-    </form>
+    <div class="card text-white bg-dark mb-3" style="font-family: 'Comfortaa', cursive">
+      <div class="card-body" style="background: linear-gradient(to right, rgba(33,29,58,0.5), rgba(38,36,153,0.5))">
+          <h1>{{ post.content }}</h1>
+          Автор начальной фразы:{{ post.creator|linebreaks}}
+          <h1>Добить шутку</h1>
+          <p class="card-text">
+            <div class="form-group">
+              <form method="post">
+                    {% csrf_token %}
+                    {{ form.title }}<br>
+                    {{ form.content }}<br>
+                    <button type="submit" class="btn text-white btn-primary" name="add_addition">Добить</button>
+                    <span>{{ error }}</span>
+              </form>
+            </div>
+        </p>
+      </div>
+    </div>
 
+    {% include 'jokes/post_additionlist.html' %}
 
-    {% for el in addition %}
-        <div class="alert alert-warning mt-2">
-            <p>{{el.content}}</p>
-        </div>
-    {% endfor %}
+    <br> <br>
+
+{#               <form action="" method="post">#}
+{#                    {% csrf_token %}#}
+{#                      <input type="number" name="name">#}
+{#                    <button type="submit" class="btn btn-success" name="like-dislike">Like</button>#}
+{#                    <span>{{ error }}</span>#}
+{#                </form>#}
 
 
 {% endblock %}

@@ -1,8 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from django.forms import ModelForm, TextInput, Textarea, HiddenInput
-from .models import Joke, Addition
+from django.forms import ModelForm, TextInput, Textarea, HiddenInput, NumberInput
+from .models import Joke, Addition, Rating, Profile
 
 
 class JokesForm(ModelForm):
@@ -12,11 +12,13 @@ class JokesForm(ModelForm):
         widgets = {
             'title': TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Введите название'
+                'placeholder': 'Введите название',
+                'size': 2,
             }),
             'content': Textarea(attrs={
                 'class': 'form-control',
-                'placeholder': 'Введите начало шутки'
+                'placeholder': 'Введите начало шутки',
+                'size': 2,
             }),
         }
 
@@ -39,7 +41,7 @@ class AdditionsForm(ModelForm):
         widgets = {
             'content': Textarea(attrs={
                 'class': 'form-control',
-                'placeholder': 'Введите начало шутки'
+                'placeholder': 'Добей шутку',
             }),
         }
 
@@ -58,3 +60,24 @@ class RegisterUserForm(UserCreationForm):
 class LoginUserForm(AuthenticationForm):
     username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
+
+class RatingForm(ModelForm):
+
+    class Meta:
+        model = Rating
+        fields = ['rating']
+        widgets = {
+            'rating': NumberInput(attrs={
+                'class': 'form-control',
+            }),
+        }
+
+class UserEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'email')
+
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('bio',)
