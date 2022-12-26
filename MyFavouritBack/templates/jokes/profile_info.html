@@ -1,63 +1,74 @@
-{% extends "jokes/base.html" %}
-
-{% block title %}Поменяй данные профиля{% endblock %}
+{% extends 'jokes/base.html' %}
+{% load static %}
+{% block title %}{{ user_other.username }}{% endblock %}
 
 {% block content %}
+
     <div class="position-absolute top-50 start-50 translate-middle" style="font-family: 'Comfortaa', cursive;">
       <div class="col-sm-30">
         <div class="card text-white bg-dark mb-3" >
           <div class="card-body" style="background: linear-gradient(to right, rgba(24,24,26,1), rgba(24,24,26,1))">
             <h1 style="align-items: center;">{{ title }}</h1>
-            {% if user.is_authenticated %}
-                <h1>Редактировать профиль</h1>
-                <form action="." method="post" enctype="multipart/form-data">
-                    {{ user_form.as_p }}
-                    {{ profile_form.as_p }}
-                    {% csrf_token %}
-                    <p><input type="submit" class="btn btn-primary float-end" value="Сохранить"></p>
-                </form>
+            {% if user_other.is_authenticated %}
+                <h1>Страница пользователя {{ user_other.username }}</h1>
+                <center>
+                {% if user_other.profile.profile_pic %}
+                <img src="{{ user_other.profile.profile_pic.url }}" width = "150" height = "150"  />
+                {% endif %}
+                </center>
+                <br>
+
+                <h2>{{ user_other.first_name }}</h2>
+                <h2>{{ user_other.last_name }}</h2>
+                <h2>{{ user_other.user_other_country }}</h2>
+                <h2>Рейтинг: {{ user_other.profile.rating }}</h2>
+
                 {% else %}
                 <div>
                 Please, log in
                 </div>
+
             {% endif %}
           </div>
         </div>
       </div>
+
+
     </div>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
 
+
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
 {% endblock %}

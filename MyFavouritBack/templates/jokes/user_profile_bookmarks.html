@@ -1,0 +1,16 @@
+{% load static %}
+
+    <h1 style="font-family: 'Comfortaa', cursive;">Bookmarks:</h1>
+    <br>
+    {% for el in user.marked.filter %}
+       <div class="card text-white bg-dark mb-3" style="font-family: 'Comfortaa', cursive">
+          <div class="card-body" style="background: linear-gradient(to right, rgba(24,24,26,1), rgba(24,24,26,1))">
+              <a href="{% url 'post' el.joke_id.id %}"> {{ el.joke_id.content }} </a>
+              <br>
+              {{ el.content }}
+          </div>
+       </div>
+    {% endfor %}
+
+
+<br><br>

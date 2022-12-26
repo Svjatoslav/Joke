@@ -4,25 +4,27 @@
 {% endblock %}
 
 {% block content %}
-
     <h1 style="font-family: 'Comfortaa', cursive;">Список шуток</h1>
 
     <div class="row" style="font-family: 'Comfortaa', cursive;">
       <div class="col-sm-2">
         <div class="card text-white bg-dark mb-3" style="width: 15r; ">
               <div class="card-body" style="background: linear-gradient(to right, rgba(33,29,58,0.5), rgba(38,36,153,0.5))">
+                {% if user.is_authenticated %}
                 <h5 class="card-title">Добавьте шутку</h5>
                 <p class="card-text">
                     <div class="form-group">
                       <form method="post">
                         {% csrf_token %}
-                        {{ form.title }}<br>
                         {{ form.content }}<br>
                         <button type="submit" class="btn btn-primary">Добавить</button>
                         <span>{{ error }}</span>
                       </form>
                     </div>
                 </p>
+                {% else %}
+                    Войдите в аккаунт, чтобы добавить шутку
+                {% endif  %}
               </div>
             </div>
       </div>

@@ -2,25 +2,44 @@
 
 <br>
     <h1 style="font-family: 'Comfortaa', cursive;">Добивки</h1>
-    <br>
+
+<br>
+    <form method="post">
+                    {% csrf_token %}
+        <div class="row">
+            <div class="col-sm-2">
+   <button type="submit" class="btn text-white btn-primary float-end" name="sort">Сортировать по времени</button>
+                   </div>
+            <div class="col-sm-2">
+                        <button type="submit" class="btn text-white btn-primary float-end " name="sort1">Сортировать по рейтингу</button>
+                </div>
+            </div>
+
+    </form>
     {% for el in addition %}
         <br>
         <div class="card text-white bg-dark mb-3" style="font-family: 'Comfortaa', cursive">
           <div class="card-body" style="background: linear-gradient(to right, rgba(24,24,26,1), rgba(24,24,26,1))">
               <div class="row">
                 <div class="col-sm-10">
+
                  <p>{{el.content}}</p>
                     <br>
-                    <em>Автор: {{el.creator}}</em>
-
+                     {% if user ==  el.creator %}
+                          <a href="{% url 'user_profile'%}">Автор: {{el.creator}}</a>
+                     {% else %}
+                          <a href="{% url 'profile_info' el.creator.id %}">Автор: {{el.creator}}</a>
+                     {% endif %}
 
                 </div>
                 <div class="col-sm">
                 <div class="float-end">
+                {% if user.is_authenticated %}
+
                 <form action="" method="post" novalidate>
                     {% csrf_token %}
                     <input type="hidden" name="name" value="{{ el.id }}">
-                <em>{{el.rating}} Stars &nbsp</em>
+                    <em>{{el.rating}} Stars &nbsp</em>
                     <button type="submit" class="btn btn-outline-light btn-floating" name="like-dislike-{{ el }}">
 
                     <div>
@@ -38,15 +57,16 @@
                     </button>
                     <span>{{ error }}</span>
                 </form>
+                {% else %}
+                    <em>{{el.rating}} Stars &nbsp</em>
+                {% endif %}
                     <br>
-
-
-
                 </div>
                 </div>
               </div>
-
-
           </div>
+        <div class="card-footer text-muted">
+            {{ el.time_created }}
+        </div>
         </div>
     {% endfor %}

@@ -1,12 +1,14 @@
 {% extends 'jokes/base.html' %}
 
-{% block content %}
+{% load static %}
 
+{% block content %}
     <div class="card text-white bg-dark mb-3" style="font-family: 'Comfortaa', cursive">
       <div class="card-body" style="background: linear-gradient(to right, rgba(33,29,58,0.5), rgba(38,36,153,0.5))">
           <h1>{{ post.content }}</h1>
           Автор начальной фразы:{{ post.creator|linebreaks}}
           <h1>Добить шутку</h1>
+          {% if user.is_authenticated %}
           <p class="card-text">
             <div class="form-group">
               <form method="post">
@@ -18,19 +20,15 @@
               </form>
             </div>
         </p>
+          {% else %}
+              Войдите в аккаунт, чтобы добить шутку
+          {% endif %}
       </div>
     </div>
 
     {% include 'jokes/post_additionlist.html' %}
 
     <br> <br>
-
-{#               <form action="" method="post">#}
-{#                    {% csrf_token %}#}
-{#                      <input type="number" name="name">#}
-{#                    <button type="submit" class="btn btn-success" name="like-dislike">Like</button>#}
-{#                    <span>{{ error }}</span>#}
-{#                </form>#}
 
 
 {% endblock %}
